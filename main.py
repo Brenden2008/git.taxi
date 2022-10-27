@@ -9,7 +9,7 @@ from tld import get_tld
 from deta import Deta
 
 import secrets
-#
+
 app = FastAPI()  # create app instance
 
 deta = Deta("")  # provide project key
