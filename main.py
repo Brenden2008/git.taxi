@@ -4,6 +4,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from urllib.parse import urlsplit, urlunsplit
+from tld import get_tld
 
 from deta import Deta
 
@@ -28,16 +29,9 @@ allowed_domains = [
     "codeberg.org",
 ]
 
-def is_root(url):
-    head, sep, tail = url.partition('//')
-    is_root_domain = tail.split('/', 1)[0] if '/' in tail else url
-    # printing or returning is_root_domain will give you what you seek
-    print(is_root_domain)
-
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 pages = Jinja2Templates(directory="pages")
-
 
 @app.get("/")
 async def get_home(request: Request):
@@ -46,7 +40,7 @@ async def get_home(request: Request):
 
 @app.post("/shorten")
 async def shorten_url(url):
-    if is_root(url) in allowed_domains:
+    if get_tld(url).fld in allowed_domains:
         # data = jsonable_encoder(url)
         token = secrets.token_urlsafe(6)
         db.put(url, key=token)
