@@ -17,8 +17,8 @@ function createAndAppendUrl(url, shortUrl) {
     //p2.href = url;
 
     // add a as child of span
-    span.appendChild(p2);
     span.appendChild(p1);
+    span.appendChild(p2);
 
     // add style class to span
     span.classList.add("short");
