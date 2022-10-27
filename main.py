@@ -12,7 +12,7 @@ import secrets
 
 app = FastAPI()  # create app instance
 
-deta = Deta("")  # provide project key
+deta = Deta("b0m3upyi_ywbcL7K1GnoWBix4T8GqkraFmW6J71Le")  # provide project key
 
 db = deta.Base("gittaxi_links")  # create a DetaBase
 
@@ -40,7 +40,7 @@ async def get_home(request: Request):
 
 @app.post("/shorten")
 async def shorten_url(url):
-    if get_tld(url).fld in allowed_domains:
+    if get_tld(url, as_object=True).fld in allowed_domains:
         # data = jsonable_encoder(url)
         token = secrets.token_urlsafe(6)
         db.put(url, key=token)
