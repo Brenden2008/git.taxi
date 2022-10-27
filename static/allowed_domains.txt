@@ -1,0 +1,12 @@
+allowed_domains = [
+    "github.io",
+    "github.com",
+    "githubapp.com",
+    "githubusercontent.com",
+    "githubassets.com",
+    "git.io",
+    "gitlab.com",
+    "gitlab.io",
+    "codeberg.page",
+    "codeberg.org",
+]
