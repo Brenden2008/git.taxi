@@ -16,6 +16,10 @@ deta = Deta()  # provide project key
 
 db = deta.Base("gittaxi_links")  # create a DetaBase
 
+cbdb = deta.Base("gittaxi_cb_1")  # create a DetaBase
+
+require_allowed_domains = False
+
 allowed_domains = [
     "github.io",
     "github.com",
@@ -29,28 +33,33 @@ allowed_domains = [
     "codeberg.org",
 ]
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-pages = Jinja2Templates(directory="pages")
-
-@app.get("/")
-async def get_home(request: Request):
-    return pages.TemplateResponse("index.html", {"request": request})
-
-
-@app.post("/shorten")
-async def shorten_url(url):
-    if get_tld(url, as_object=True).fld in allowed_domains:
-        # data = jsonable_encoder(url)
+@app.post("/api/short")
+async def shorten_url(url, token):
+    if token == None:
         token = secrets.token_urlsafe(6)
-        db.put(url, key=token)
-        return {"url": token, "allowed_url": "true"}
+
+    if require_allowed_domains == True:
+        if cbdb.get(token) == None and db.get(token) == None:
+            if get_tld(url, as_object=True).fld in allowed_domains:
+                cbdb.insert(url, key=token)
+                db.insert(url, key=token)
+                return {"url": token, "allowed_url": "true"}
+            else:
+                return {"allowed_url": "false"}
+        else:
+            return {"success": "false"}
     else:
-        return {"allowed_url": "false"}
+        cbdb.insert(url, key=token)
+        db.insert(url, key=token)
+        return {"url": token, "allowed_url": "true"}
 
-
-@app.get("/{url}")
-async def redirect_to_(url):
-    red_ = db.get(url)
-    print(red_)
-    return RedirectResponse(red_["value"])
+@app.post("/api/delete")
+async def delete_shorten_url(token):
+    if cbdb.get(token) != None and db.get(token) != None:
+        try:
+            cbdb.delete(token)
+            db.delete(token)
+        except:
+            return {"deleted": "false"}
+        finally:
+            return {"deleted": "true"}

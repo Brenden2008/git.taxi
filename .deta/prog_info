@@ -1,0 +1,1 @@
+{"id":"1b4a0ee5-d794-466b-a533-a2f8a778cb20","space":6119,"runtime":"python3.9","name":"gittaxi_cb_1","path":"khzlr2","project":"b0m3upyi","account":"144798365827","region":"us-west-1","deps":["fastapi","aiofiles","jinja2","tld"],"envs":null,"public":false,"log_level":"off","cron":""}
