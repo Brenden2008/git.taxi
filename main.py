@@ -12,7 +12,7 @@ import secrets
 
 app = FastAPI()  # create app instance
 
-deta = Deta("b0m3upyi_ywbcL7K1GnoWBix4T8GqkraFmW6J71Le")  # provide project key
+deta = Deta()  # provide project key
 
 db = deta.Base("gittaxi_links")  # create a DetaBase
 
