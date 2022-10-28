@@ -6,7 +6,7 @@ function createAndAppendUrl(url, shortUrl) {
     // create elementss
     let span = document.createElement("span");
     let p1 = document.createElement("a");
-    let p2 = document.createElement("p");
+    let p2 = document.createElement("a");
 
     // set element text values
     p1.innerText = shortUrl;
@@ -14,7 +14,7 @@ function createAndAppendUrl(url, shortUrl) {
 
     // set element href values
     p1.href = shortUrl;
-    //p2.href = url;
+    p2.href = url;
 
     // add a as child of span
     span.appendChild(p1);
