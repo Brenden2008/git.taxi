@@ -5,6 +5,7 @@
 </center>
 
 <center>
+<p> This is a template for all needed apis.</p>
 <p> Live a star if you like this </p>
 <p> Made by Brenden Stahle </p>
 <center>
