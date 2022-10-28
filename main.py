@@ -51,6 +51,9 @@ async def shorten_url(url):
 
 @app.get("/{url}")
 async def redirect_to_(url):
-    red_ = db.get(url)
-    print(red_)
-    return RedirectResponse(red_["value"])
+    if db.get(url) != None:
+        red_ = db.get(url)
+        print(red_)
+        return RedirectResponse(red_["value"])
+    else:
+        return "This link doesn't exist."
