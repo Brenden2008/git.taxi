@@ -1,10 +1,12 @@
 <center>
 <h1> Git.taxi Powered By MiniShort </h1>
 
-<p> A damn simple URL shortener in Python on Deta </p>
+<p> A simple URL shortener in Python on Deta </p>
 </center>
 
-This is a simple URL shortener made using python and runs on deta.
+## NEW! Free Subdomains!
+Git.taxi is now a part of the Code Domains Network! This means you can get free subdomains on git.taxi!
+Sign up [here](https://github.com/RebootLabs-xyz/code-domains)!
 
 ## Technologies Used
 - FastAPI
