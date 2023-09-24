@@ -4,9 +4,8 @@
 <p> A simple URL shortener in Python on Deta </p>
 </center>
 
-## NEW! Free Subdomains!
-Git.taxi is now a part of the Code Domains Network! This means you can get free subdomains on git.taxi!
-Sign up [here](https://github.com/RebootLabs-xyz/code-domains)!
+## Now on Deta Space
+Thank you [dedomil](https://github.com/dedomil)
 
 ## Technologies Used
 - FastAPI
