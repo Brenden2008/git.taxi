@@ -1,14 +1,15 @@
-name: Deploy to Deta
+name: Push to Space
 on: push
 
 jobs:
-  deploy:
+  push-to-space:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 #Be sure you check-out the repo first. Deta CLI needs access to the files
-      - uses: BogDAAAMN/deta-deploy-action@v1.0.1
+      - uses: actions/checkout@v3
+      - name: Deta Space Deployment Github Action
+        uses: neobrains/space-deployment-github-action@v0.5
         with:
-          deta-access-token: ${{ secrets.DETA_TOKEN }} #Deta access token https://docs.deta.sh/docs/cli/auth
-          deta-name: 'gittaxi_n1' #Deta Micro name https://docs.deta.sh/docs/cli/commands/#deta-clone
-          deta-project: 'Gittaxi' #Optional: Deta project name https://docs.deta.sh/docs/cli/commands/#deta-clone
-
+          access_token: ${{ secrets.ACCESS_TOKEN }}
+          project_id: ${{ secrets.PROJECT_ID }}
+          space_push: true
+          list_on_discovery: false
